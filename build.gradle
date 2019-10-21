@@ -1,7 +1,9 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
+
     ext.kotlin_version = '1.3.50'
+
     repositories {
         google()
         jcenter()
@@ -21,6 +23,51 @@ allprojects {
         jcenter()
         
     }
+}
+
+ext {
+
+    //app config
+    min_sdk_version = 21
+    target_sdk_version = 29
+    compiled_sdk_version = 29
+    build_tools_version = "29.0.2"
+
+    // app versions
+    debug_v_number = 1
+    release_v_number = 1
+
+    debug_v_name = '1.0'
+    release_v_name = '1.0'
+
+    current_v_number = debug_v_number
+    current_v_name = debug_v_name
+
+    // android support
+    app_compat_version = '1.1.0'
+
+    //design
+    constraint_layout_version = '1.1.3'
+
+
+    // di
+    dagger_version = '2.24'
+
+    // networking
+    retrofit_version = '2.6.2'
+
+    //android arch. components
+    lifecycle_version = '2.1.0'
+
+    //testing
+    jUnit_version = '4.12'
+    androidx_jUnit_version = '1.1.1'
+    mockito_version = '2.28.2'
+    espresso_version = '3.2.0'
+
+    //androidx
+    androidx_ktx_version = '1.1.0'
+
 }
 
 task clean(type: Delete) {
