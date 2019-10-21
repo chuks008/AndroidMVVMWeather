@@ -35,8 +35,11 @@ dependencies {
 
     // testing
     testImplementation "junit:junit:$jUnit_version"
+    testImplementation "org.mockito:mockito-core:$mockito_version"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockito_kt_version"
     androidTestImplementation "androidx.test.ext:junit:$androidx_jUnit_version"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
+
 
     // di
     api "com.google.dagger:dagger:$dagger_version"
@@ -49,6 +52,7 @@ dependencies {
 
     //retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
 
     // android architecture components - lifecycle + viewModel
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"

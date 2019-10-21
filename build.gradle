@@ -63,6 +63,7 @@ ext {
     jUnit_version = '4.12'
     androidx_jUnit_version = '1.1.1'
     mockito_version = '2.28.2'
+    mockito_kt_version = '2.2.0'
     espresso_version = '3.2.0'
 
     //androidx
