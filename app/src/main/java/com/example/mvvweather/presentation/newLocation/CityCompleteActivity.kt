@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.mvvweather.R
+import com.example.mvvweather.data.autocomplete.response.PlaceData
 import kotlinx.android.synthetic.main.city_auto_complete_screen.*
 
 class CityCompleteActivity: AppCompatActivity() {
@@ -58,11 +59,17 @@ class CityCompleteActivity: AppCompatActivity() {
             }
         })
 
-        viewModel.citySuggestions.observe(this, Observer<List<String>> {suggestionList ->
+        viewModel.citySuggestions.observe(this, Observer<List<PlaceData>> {suggestionList ->
 
             Log.i(TAG, "Full list of suggestions: $suggestionList")
 
-            suggestionAdapter.addAll(suggestionList)
+            val suggestions = ArrayList<String>()
+
+            suggestionList.forEach { place ->
+                suggestions.add(place.description)
+            }
+
+            suggestionAdapter.addAll(suggestions)
             suggestionAdapter.notifyDataSetChanged()
         })
     }
