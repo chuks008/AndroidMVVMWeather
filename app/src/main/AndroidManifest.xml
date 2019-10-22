@@ -12,6 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".presentation.mainScreen.MainActivity">
+
+        </activity>
+
+        <activity android:name=".presentation.newLocation.CityCompleteActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

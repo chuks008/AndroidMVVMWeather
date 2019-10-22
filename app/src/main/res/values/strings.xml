@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MVVWeather</string>
+    <string name="enter_city_hint">Enter city here...</string>
 </resources>
