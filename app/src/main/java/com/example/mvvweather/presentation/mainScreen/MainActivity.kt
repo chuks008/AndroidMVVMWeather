@@ -20,11 +20,9 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this).get(MainScreenViewModel::class.java)
 
         viewModel.fetchLocation().observe(this, Observer<LocationData> {locationData ->
-            runOnUiThread {
-                Log.i(TAG, "Error occured: ${locationData.error}")
-                Log.i(TAG, "City Name ${locationData.city}")
-                textView.text = locationData.city
-            }
+            Log.i(TAG, "Error occured: ${locationData.error}")
+            Log.i(TAG, "City Name ${locationData.city}")
+            textView.text = locationData.city
         })
     }
 }

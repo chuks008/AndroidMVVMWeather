@@ -43,7 +43,10 @@ class LocationManagerImpl: LocationManager {
                 call: Call<LocationResponse>,
                 response: Response<LocationResponse>
             ) {
-                if(response.isSuccessful) {
+                if(!response.isSuccessful) {
+                    Log.e(TAG, "Error Occured with response unsuccessful")
+                    locationLiveData.value = generateLocationData(true)
+                } else {
                     val body = response.body()!!
 
                     if(body.city != "") {
@@ -52,11 +55,7 @@ class LocationManagerImpl: LocationManager {
                             body.coutryCode,
                             body.lat,
                             body.long)
-                    } else {
-                        locationLiveData.value = generateLocationData(true)
                     }
-                } else {
-                    Log.e(TAG, "Error Occured with response unsuccessful")
                 }
             }
         })
