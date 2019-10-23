@@ -32,6 +32,8 @@ class CityCompleteActivity: AppCompatActivity() {
 
         cityAutoComplete.setAdapter(suggestionAdapter)
 
+        cityAutoComplete.threshold = 3
+
         viewModel = ViewModelProviders.of(this).get(AddLocationViewModel::class.java)
 
         addSuggestionListener()
@@ -47,7 +49,8 @@ class CityCompleteActivity: AppCompatActivity() {
 
         cityAutoComplete.addTextChangedListener(object: TextWatcher {
             override fun afterTextChanged(query: Editable) {
-                if(query.isNotEmpty()) {
+                if(query.toString().trim().isNotEmpty() &&
+                        query.toString().length > 2) {
                     getCitySuggestions(query.toString())
                 }
             }
@@ -70,13 +73,16 @@ class CityCompleteActivity: AppCompatActivity() {
                 acquiredSuggestions.add(suggestion)
             }
 
-            suggestionAdapter.clear()
             suggestionAdapter.addAll(acquiredSuggestions)
             suggestionAdapter.notifyDataSetChanged()
         })
     }
 
     private fun getCitySuggestions(query: String) {
+
+        suggestionAdapter.clear()
+        suggestionAdapter.notifyDataSetChanged()
+
         inputHandler.removeCallbacks(inputRunnable)
         inputRunnable = Runnable {
             Log.i(TAG, "Getting suggestions for $query")
