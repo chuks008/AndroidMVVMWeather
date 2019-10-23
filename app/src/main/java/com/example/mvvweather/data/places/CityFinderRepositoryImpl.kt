@@ -1,10 +1,11 @@
-package com.example.mvvweather.data.autocomplete
+package com.example.mvvweather.data.places
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.mvvweather.Constants
 import com.example.mvvweather.data.location.response.LocationData
+import com.example.mvvweather.data.places.response.CityDetailResponse
 import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
@@ -49,8 +50,6 @@ class CityFinderRepositoryImpl: CityFindRepository {
                     Log.e(TAG, "Error getting city suggestions with response error")
                     citySuggestionData.value = Collections.emptyList()
                 } else {
-
-                    Log.i(TAG, "Request:  ${call.request().url()}")
                     Log.e(TAG, "Success getting city suggestions: ${response.body()?.size}")
 
                     citySuggestionData.value = response.body()
@@ -63,6 +62,31 @@ class CityFinderRepositoryImpl: CityFindRepository {
 
     override fun getCityData(city: String): LiveData<LocationData> {
         val cityData = MutableLiveData<LocationData>()
+
+        placesApi.queryPlaceDetail(city).enqueue(object: Callback<CityDetailResponse> {
+            override fun onFailure(call: Call<CityDetailResponse>, t: Throwable) {
+                 Log.e(TAG, "Error getting place details: ${t.localizedMessage}")
+                 cityData.value = LocationData(true)
+            }
+
+            override fun onResponse(
+                call: Call<CityDetailResponse>,
+                response: Response<CityDetailResponse>
+            ) {
+                if(!response.isSuccessful) {
+
+                } else {
+                    Log.e(TAG, "Success getting city details")
+                    val cityDetails = response.body()
+                    cityData.value = LocationData(false,
+                        cityDetails!!.city,
+                        cityDetails.countryCode,
+                        cityDetails.latitude,
+                        cityDetails.longitude)
+                }
+            }
+        })
+
         return cityData
     }
 }

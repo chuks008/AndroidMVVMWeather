@@ -1,4 +1,4 @@
-package com.example.mvvweather.data.autocomplete
+package com.example.mvvweather.data.places
 
 import androidx.lifecycle.LiveData
 import com.example.mvvweather.data.location.response.LocationData

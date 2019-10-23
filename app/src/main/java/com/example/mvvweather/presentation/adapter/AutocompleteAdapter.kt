@@ -17,7 +17,8 @@ import com.example.mvvweather.R
  */
 class AutocompleteAdapter(private val mContext: Context,
                           private val layoutRes: Int,
-                          private val suggestions: ArrayList<String>):
+                          private val suggestions: ArrayList<String>
+):
     ArrayAdapter<String>(mContext, layoutRes, suggestions), Filterable {
 
     private val TAG = AutocompleteAdapter::class.java.simpleName
@@ -25,16 +26,12 @@ class AutocompleteAdapter(private val mContext: Context,
     private var _suggestions: ArrayList<String> = suggestions
 
     override fun getItem(position: Int): String? {
-        return suggestions.get(position)
+        Log.i(TAG, "Added following item to list, ${suggestions[position]}")
+        return suggestions[position]
     }
 
     override fun getCount(): Int {
         return suggestions.size
-    }
-
-    override fun addAll(collection: MutableCollection<out String>) {
-        super.addAll(collection)
-        Log.i(TAG, "Added following items to filter, $collection")
     }
 
     @SuppressLint("ViewHolder")
