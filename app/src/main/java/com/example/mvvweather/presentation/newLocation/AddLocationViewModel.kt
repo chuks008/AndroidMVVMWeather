@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.example.mvvweather.data.autocomplete.CityFinderRepositoryImpl
-import com.example.mvvweather.data.autocomplete.response.PlaceData
 
 class AddLocationViewModel: ViewModel() {
 
@@ -14,7 +13,7 @@ class AddLocationViewModel: ViewModel() {
 
     private var cityQueryString = MutableLiveData<String>() // for the city queries
 
-    val citySuggestions: LiveData<List<PlaceData>> = Transformations.switchMap(cityQueryString) { queryString ->
+    val citySuggestions: LiveData<List<String>> = Transformations.switchMap(cityQueryString) { queryString ->
         cityFinderRepo.getCitySuggestions(queryString)
     } // for the results
 

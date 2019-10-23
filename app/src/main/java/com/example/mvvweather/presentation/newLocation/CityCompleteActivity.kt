@@ -6,18 +6,17 @@ import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.mvvweather.R
-import com.example.mvvweather.data.autocomplete.response.PlaceData
+import com.example.mvvweather.presentation.adapter.AutocompleteAdapter
 import kotlinx.android.synthetic.main.city_auto_complete_screen.*
 
 class CityCompleteActivity: AppCompatActivity() {
 
     private val suggestions = ArrayList<String>()
-    private lateinit var suggestionAdapter: ArrayAdapter<String>
+    private lateinit var suggestionAdapter: AutocompleteAdapter
     private lateinit var viewModel: AddLocationViewModel
     private val TAG = CityCompleteActivity::class.java.simpleName
     private lateinit var inputHandler: Handler
@@ -27,8 +26,8 @@ class CityCompleteActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.city_auto_complete_screen)
 
-        suggestionAdapter = ArrayAdapter<String>(this,
-            android.R.layout.simple_list_item_1,
+        suggestionAdapter = AutocompleteAdapter(this,
+            R.layout.auto_complete_list_item,
             suggestions)
 
         cityAutoComplete.setAdapter(suggestionAdapter)
@@ -47,29 +46,32 @@ class CityCompleteActivity: AppCompatActivity() {
         }
 
         cityAutoComplete.addTextChangedListener(object: TextWatcher {
-            override fun afterTextChanged(p0: Editable?) {
-
+            override fun afterTextChanged(query: Editable) {
+                if(query.isNotEmpty()) {
+                    getCitySuggestions(query.toString())
+                }
             }
 
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                getCitySuggestions(p0.toString())
+
             }
         })
 
-        viewModel.citySuggestions.observe(this, Observer<List<PlaceData>> {suggestionList ->
+        viewModel.citySuggestions.observe(this, Observer<List<String>> {suggestionList ->
 
             Log.i(TAG, "Full list of suggestions: $suggestionList")
 
-            val suggestions = ArrayList<String>()
+            val acquiredSuggestions = ArrayList<String>()
 
-            suggestionList.forEach { place ->
-                suggestions.add(place.description)
+            suggestionList.forEach {suggestion ->
+                acquiredSuggestions.add(suggestion)
             }
 
-            suggestionAdapter.addAll(suggestions)
+            suggestionAdapter.clear()
+            suggestionAdapter.addAll(acquiredSuggestions)
             suggestionAdapter.notifyDataSetChanged()
         })
     }
