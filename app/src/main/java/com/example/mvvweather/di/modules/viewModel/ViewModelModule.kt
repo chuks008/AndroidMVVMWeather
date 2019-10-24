@@ -3,6 +3,7 @@ package com.example.mvvweather.di.modules.viewModel
 import androidx.lifecycle.ViewModel
 import com.example.mvvweather.presentation.mainScreen.MainScreenViewModel
 import com.example.mvvweather.presentation.newLocation.AddLocationViewModel
+import com.example.mvvweather.presentation.weather.WeatherInfoViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -19,5 +20,10 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(MainScreenViewModel::class)
     abstract fun bindMainScreenViewModel(mainScreenViewModel: MainScreenViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(WeatherInfoViewModel::class)
+    abstract fun bindWeatherInfoViewModel(weatherInfoViewModel: WeatherInfoViewModel): ViewModel
 
 }

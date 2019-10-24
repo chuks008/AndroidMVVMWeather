@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="200dp"
+        android:layout_centerInParent="true"
+        android:columnCount="2"
+        android:useDefaultMargins="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Current Temp:"
+            android:gravity="start"
+            android:layout_gravity="fill_horizontal"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/currentTempText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="300"
+            android:gravity="end"
+            android:layout_gravity="fill_horizontal"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:layout_gravity="fill_horizontal"
+            android:text="Max Temp:"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/maxTempText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:layout_gravity="fill_horizontal"
+            android:text="-"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:layout_gravity="fill_horizontal"
+            android:text="Min Temp:"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/minTempText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:layout_gravity="fill_horizontal"
+            android:text="-"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:layout_gravity="fill_horizontal"
+            android:text="Condition:"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/conditionText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:layout_gravity="fill_horizontal"
+            android:text="-"
+            android:textSize="18sp"/>
+
+    </GridLayout>
+
+</RelativeLayout>

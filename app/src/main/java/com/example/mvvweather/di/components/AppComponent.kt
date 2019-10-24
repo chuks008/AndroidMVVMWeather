@@ -5,6 +5,7 @@ import com.example.mvvweather.application.MVVWeatherApp
 import com.example.mvvweather.di.modules.activity.ActivityBuildersModule
 import com.example.mvvweather.di.modules.network.cityQuery.CityQueryApiModule
 import com.example.mvvweather.di.modules.network.location.LocationModule
+import com.example.mvvweather.di.modules.network.weather.WeatherApiModule
 import com.example.mvvweather.di.modules.viewModel.ViewModelFactoryModule
 import com.example.mvvweather.di.modules.viewModel.ViewModelModule
 import dagger.BindsInstance
@@ -19,7 +20,8 @@ import javax.inject.Singleton
     ViewModelModule::class,
     ActivityBuildersModule::class,
     LocationModule::class,
-    CityQueryApiModule::class
+    CityQueryApiModule::class,
+    WeatherApiModule::class
     ])
 interface AppComponent: AndroidInjector<MVVWeatherApp> {
 

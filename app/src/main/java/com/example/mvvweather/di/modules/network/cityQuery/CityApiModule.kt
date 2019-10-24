@@ -20,11 +20,11 @@ class CityQueryApiModule {
     @Provides
     @Singleton
     @Named(Constants.GEOBYTES_API_NAME)
-    fun provideCityQueryApiRetrofit(gson: Gson): Retrofit {
+    fun provideCityQueryApiRetrofit(gsonConverterFactory: GsonConverterFactory): Retrofit {
         return Retrofit.Builder()
             .baseUrl(Constants.CITY_QUERY_BASE_URL)
             .addConverterFactory(ScalarsConverterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create(gson))
+            .addConverterFactory(gsonConverterFactory)
             .build()
     }
 

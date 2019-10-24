@@ -19,10 +19,10 @@ class LocationModule {
     @Provides
     @Singleton
     @Named(Constants.LOCATION_API_NAME)
-    fun provideLocationAPIRetrofit(gson: Gson): Retrofit {
+    fun provideLocationAPIRetrofit(gsonConverterFactory: GsonConverterFactory): Retrofit {
         return Retrofit.Builder()
             .baseUrl(Constants.LOCATION_BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create(gson))
+            .addConverterFactory(gsonConverterFactory)
             .build()
     }
 

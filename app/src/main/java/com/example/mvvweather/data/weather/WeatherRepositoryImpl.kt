@@ -1,0 +1,64 @@
+package com.example.mvvweather.data.weather
+
+import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import com.example.mvvweather.data.weather.response.CurrentWeatherResponse
+import com.example.mvvweather.data.weather.response.WeatherData
+import com.example.mvvweather.presentation.weather.WeatherQuery
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import javax.inject.Inject
+
+
+class WeatherRepositoryImpl @Inject constructor(private val weatherApi: WeatherApi): WeatherRepository {
+
+    private val TAG = WeatherRepositoryImpl::class.java.simpleName
+
+    override fun getCurrentWeather(weatherQuery: WeatherQuery): LiveData<WeatherData> {
+
+        val currentWeatherData = MutableLiveData<WeatherData>()
+
+        weatherApi.getCurrentWeather(weatherQuery.lat,
+            weatherQuery.lon, weatherQuery.city).enqueue(object: Callback<CurrentWeatherResponse> {
+            override fun onFailure(call: Call<CurrentWeatherResponse>, t: Throwable) {
+                Log.e(TAG, "Failure when getting current weather: ${t.localizedMessage}")
+                currentWeatherData.value = WeatherData()
+            }
+
+            override fun onResponse(
+                call: Call<CurrentWeatherResponse>,
+                response: Response<CurrentWeatherResponse>
+            ) {
+                if(!response.isSuccessful){
+                    Log.e(TAG, "Failure when getting current weather on response")
+                    currentWeatherData.value = WeatherData()
+                } else {
+                    Log.i(TAG, "Success getting weather data")
+                    val weatherConditions = response.body()?.conditions
+                    if(weatherConditions?.get(0) == null) {
+                        Log.e(TAG, "No results found")
+                        currentWeatherData.value = WeatherData()
+                        return
+                    }
+
+                    val temps = response.body()!!.temperatures
+
+                    currentWeatherData.value = WeatherData(convertTempToString(temps.currentTemp),
+                            convertTempToString(temps.minTemp),
+                            convertTempToString(temps.maxTemp),
+                            weatherConditions[0].condition,
+                            weatherConditions[0].conditionIcon)
+
+                }
+            }
+        })
+
+        return currentWeatherData
+    }
+
+    private fun convertTempToString(temp: Float): String {
+        return String.format("%.2f", temp)
+    }
+}

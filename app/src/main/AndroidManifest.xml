@@ -20,6 +20,10 @@
         </activity>
 
         <activity android:name=".presentation.newLocation.CityQueryActivity">
+
+        </activity>
+
+        <activity android:name=".presentation.weather.WeatherActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

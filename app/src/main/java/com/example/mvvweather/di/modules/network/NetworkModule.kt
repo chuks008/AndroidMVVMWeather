@@ -19,4 +19,10 @@ class NetworkModule {
     fun provideGson(): Gson {
         return Gson()
     }
+
+    @Provides
+    @Singleton
+    fun provideGsonConverterFactory(gson: Gson): GsonConverterFactory {
+        return GsonConverterFactory.create(gson)
+    }
 }
