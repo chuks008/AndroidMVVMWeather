@@ -6,25 +6,32 @@ import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import android.view.View
-import android.widget.AdapterView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.mvvweather.R
 import com.example.mvvweather.data.location.response.LocationData
+import com.example.mvvweather.di.modules.viewModel.ViewModelFactory
 import com.example.mvvweather.presentation.adapter.AutocompleteAdapter
+import com.example.mvvweather.presentation.mainScreen.MainScreenViewModel
+import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.city_auto_complete_screen.*
+import javax.inject.Inject
 
-class CityCompleteActivity: AppCompatActivity() {
+class CityQueryActivity: DaggerAppCompatActivity() {
+
+    private val TAG = CityQueryActivity::class.java.simpleName
 
     private val suggestions = ArrayList<String>()
     private lateinit var suggestionAdapter: AutocompleteAdapter
-    private lateinit var viewModel: AddLocationViewModel
-    private val TAG = CityCompleteActivity::class.java.simpleName
     private lateinit var inputHandler: Handler
     private lateinit var inputRunnable: Runnable
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private lateinit var viewModel: AddLocationViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,10 +45,10 @@ class CityCompleteActivity: AppCompatActivity() {
 
         cityAutoComplete.threshold = 3
 
-        viewModel = ViewModelProviders.of(this).get(AddLocationViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, viewModelFactory)
+            .get(AddLocationViewModel::class.java)
 
         addViewModelObservers()
-
         addSuggestionListener()
     }
 

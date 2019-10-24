@@ -3,32 +3,19 @@ package com.example.mvvweather.data.location
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.mvvweather.Constants
 import com.example.mvvweather.data.location.response.LocationData
 import com.example.mvvweather.data.location.response.LocationResponse
-import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
+class CurrentLocationManagerImpl @Inject constructor(private val netClient: LocationApi):
+    CurrentLocationManager {
 
-//import javax.inject.Inject
-
-class LocationManagerImpl: LocationManager {
-
-    private val TAG = LocationManagerImpl::class.java.simpleName
-    private var netClient: LocationApi
-
-    init {
-        val retrofit = Retrofit.Builder()
-            .baseUrl(Constants.LOCATION_BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create(Gson()))
-            .build()
-
-        netClient = retrofit.create(LocationApi::class.java)
-    }
+    private val TAG = CurrentLocationManagerImpl::class.java.simpleName
 
     override fun getLocation(): LiveData<LocationData> {
         val locationLiveData = MutableLiveData<LocationData>()

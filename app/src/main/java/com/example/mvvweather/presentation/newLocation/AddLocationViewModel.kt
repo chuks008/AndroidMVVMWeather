@@ -5,12 +5,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.example.mvvweather.data.location.response.LocationData
-import com.example.mvvweather.data.places.CityFinderRepositoryImpl
+import com.example.mvvweather.data.places.CityFinderRepository
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class AddLocationViewModel: ViewModel() {
-
-    // move to di
-    private val cityFinderRepo = CityFinderRepositoryImpl()
+@Singleton
+class AddLocationViewModel @Inject constructor(cityFinderRepo: CityFinderRepository): ViewModel() {
 
     private var _cityQueryString = MutableLiveData<String>() // for the city queries
 

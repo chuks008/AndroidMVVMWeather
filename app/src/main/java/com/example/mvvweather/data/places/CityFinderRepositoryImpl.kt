@@ -3,34 +3,20 @@ package com.example.mvvweather.data.places
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.mvvweather.Constants
 import com.example.mvvweather.data.location.response.LocationData
 import com.example.mvvweather.data.places.response.CityDetailResponse
-import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.util.*
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class CityFinderRepositoryImpl: CityFindRepository {
+@Singleton
+class CityFinderRepositoryImpl @Inject constructor(private val placesApi: CityQueryApi):
+    CityFinderRepository {
 
     private val TAG = CityFinderRepositoryImpl::class.java.simpleName
-
-    // move to di
-    private var placesApi: PlaceAutocompleteApi
-
-    init {
-        val retrofit = Retrofit.Builder()
-            .baseUrl(Constants.CITY_QUERY_BASE_URL)
-            .addConverterFactory(ScalarsConverterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create(Gson()))
-            .build()
-
-        placesApi = retrofit.create(PlaceAutocompleteApi::class.java)
-    }
 
     override fun getCitySuggestions(cityQuery: String): LiveData<List<String>> {
 

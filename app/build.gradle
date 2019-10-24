@@ -16,6 +16,11 @@ android {
     }
     buildTypes {
 
+        debug {
+            buildConfigField 'String', "OpenWeatherKey", OPEN_WEATHER_KEY
+            resValue 'string', "open_weather_key", OPEN_WEATHER_KEY
+        }
+
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
