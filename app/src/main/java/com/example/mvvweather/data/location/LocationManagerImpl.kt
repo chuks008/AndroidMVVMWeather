@@ -23,7 +23,7 @@ class LocationManagerImpl: LocationManager {
 
     init {
         val retrofit = Retrofit.Builder()
-            .baseUrl(Constants.BASE_URL)
+            .baseUrl(Constants.LOCATION_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create(Gson()))
             .build()
 
