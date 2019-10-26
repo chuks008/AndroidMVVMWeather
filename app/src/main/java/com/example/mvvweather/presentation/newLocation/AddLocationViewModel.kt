@@ -24,11 +24,11 @@ class AddLocationViewModel @Inject constructor(cityFinderRepo: CityFinderReposit
         cityFinderRepo.getCityData(queryString)
     }
 
-    fun getCityByName(query: String) {
+    fun setCityName(query: String) {
         _cityQueryString.value = query
     }
 
-    fun getCityDetail(query: String) {
+    fun setCityDetail(query: String) {
         _cityDetailQueryString.value = query
     }
     

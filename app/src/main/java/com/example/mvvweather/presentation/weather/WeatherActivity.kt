@@ -47,6 +47,6 @@ class WeatherActivity: DaggerAppCompatActivity() {
             }
         })
 
-        viewModel.getCurrentWeather("Lagos")
+        viewModel.setCurrentWeather("Lagos")
     }
 }

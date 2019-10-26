@@ -107,7 +107,7 @@ class CityQueryActivity: DaggerAppCompatActivity() {
 
         cityAutoComplete.setOnItemClickListener { adapterView, view, position, l ->
             Log.e(TAG, "First item: ${suggestionAdapter.getItem(0)}")
-            viewModel.getCityDetail(suggestionAdapter.getItem(position) as String)
+            viewModel.setCityDetail(suggestionAdapter.getItem(position) as String)
         }
 
     }
@@ -120,7 +120,7 @@ class CityQueryActivity: DaggerAppCompatActivity() {
         inputHandler.removeCallbacks(inputRunnable)
         inputRunnable = Runnable {
             Log.i(TAG, "Getting suggestions for $query")
-            viewModel.getCityByName(query)
+            viewModel.setCityName(query)
         }
 
         inputHandler.postDelayed(inputRunnable, 1000)

@@ -17,7 +17,7 @@ class WeatherInfoViewModel @Inject constructor(private val weatherRepo: WeatherR
         weatherRepo.getCurrentWeather(query)
     }
 
-    fun getCurrentWeather(city: String, latitude: Float = 0f, longitude: Float = 0f) {
+    fun setCurrentWeather(city: String, latitude: Float = 0f, longitude: Float = 0f) {
         _weatherQuery.value = WeatherQuery(city, latitude, longitude)
     }
 }
