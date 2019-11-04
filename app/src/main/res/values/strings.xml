@@ -2,4 +2,9 @@
     <string name="app_name">MVVWeather</string>
     <string name="enter_city_hint">Enter city here...</string>
     <string name="auto_complete_item_text">item1</string>
+    <string name="weather_item_city_name">City Name</string>
+    <string name="weather_item_country_name">Country Name</string>
+    <string name="high_low_weather_text">33 / 24°</string>
+    <string name="high_low_weather_unit">C</string>
+    <string name="weather_unit_text">C</string>
 </resources>

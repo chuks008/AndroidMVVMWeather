@@ -13,7 +13,7 @@ class SimpleWeatherDataAdapter(val weatherList: List<WeatherData>):
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SimpleWeatherViewHolder {
         return SimpleWeatherViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.forecast_item, parent, false))
+            LayoutInflater.from(parent.context).inflate(R.layout.weather_item, parent, false))
     }
 
     override fun getItemCount(): Int {
