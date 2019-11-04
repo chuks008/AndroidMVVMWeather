@@ -13,8 +13,8 @@ import javax.inject.Singleton
 class AddLocationViewModel @Inject constructor(cityFinderRepo: CityFinderRepository,
                                                weatherRepo: WeatherRepository): ViewModel() {
 
-    private var _cityQueryString = MutableLiveData<String>() // for the city queries
-    private var _cityDetailQueryString = MutableLiveData<String>()
+    private val _cityQueryString = MutableLiveData<String>() // for the city queries
+    private val _cityDetailQueryString = MutableLiveData<String>()
 
     private val cityDetail: LiveData<LocationData> = Transformations.switchMap(_cityDetailQueryString) {queryString ->
         cityFinderRepo.getCityData(queryString)

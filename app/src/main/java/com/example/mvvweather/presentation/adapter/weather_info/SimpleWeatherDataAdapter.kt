@@ -30,7 +30,7 @@ class SimpleWeatherDataAdapter(val weatherList: List<WeatherDataView>):
 
             higLowUnitText.text = "C"
             condition.text = currentItem.condition
-            currentTemp.text = currentItem.currentTemp
+            currentTemp.text = String.format("%s°", currentItem.currentTemp)
             cityName.text = currentItem.city
             countryName.text = currentItem.country
         }
