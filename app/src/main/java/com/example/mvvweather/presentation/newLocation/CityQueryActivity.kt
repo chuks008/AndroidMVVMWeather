@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.mvvweather.R
 import com.example.mvvweather.data.location.response.LocationData
+import com.example.mvvweather.data.weather.mapping.WeatherData
 import com.example.mvvweather.di.modules.viewModel.ViewModelFactory
 import com.example.mvvweather.presentation.adapter.AutocompleteAdapter
 import com.example.mvvweather.presentation.mainScreen.MainScreenViewModel
@@ -67,13 +68,13 @@ class CityQueryActivity: DaggerAppCompatActivity() {
             suggestionAdapter.notifyDataSetChanged()
         })
 
-        viewModel.cityDetail.observe(this, Observer<LocationData> {cityData ->
-
-            val resultString = String.format("Location is: %s, " +
-            "with country code: %s, with latitude %.2f and longitude %.2f", cityData.city,
-                cityData.countryCode, cityData.lat, cityData.long)
-
-            Toast.makeText(this, resultString, Toast.LENGTH_LONG).show()
+        viewModel.cityWeatherData.observe(this, Observer<List<WeatherData>> { forecastList ->
+            if(forecastList.isEmpty()) {
+                Log.e(TAG, "Error getting forecast for the week")
+            } else {
+                Log.i(TAG, "Forecast list size: ${forecastList.size}")
+                Log.i(TAG, "Forecast list: $forecastList")
+            }
         })
     }
 
