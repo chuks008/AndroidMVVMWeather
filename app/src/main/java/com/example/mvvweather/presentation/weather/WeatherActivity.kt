@@ -1,12 +1,11 @@
 package com.example.mvvweather.presentation.weather
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.mvvweather.R
-import com.example.mvvweather.data.weather.response.WeatherData
+import com.example.mvvweather.data.weather.mapping.WeatherData
 import com.example.mvvweather.di.modules.viewModel.ViewModelFactory
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.weather_screen.*
@@ -28,7 +27,7 @@ class WeatherActivity: DaggerAppCompatActivity() {
         viewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(WeatherInfoViewModel::class.java)
 
-        viewModel.currentWeather.observe(this, Observer<WeatherData> {data ->
+        viewModel.currentWeather.observe(this, Observer<WeatherData> { data ->
             if(data.currentTemp == "") {
                 Toast.makeText(this,
                     "Error getting weather data",

@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.example.mvvweather.data.weather.WeatherRepository
-import com.example.mvvweather.data.weather.response.WeatherData
+import com.example.mvvweather.data.weather.mapping.WeatherData
 import javax.inject.Inject
 
 class WeatherInfoViewModel @Inject constructor(private val weatherRepo: WeatherRepository)
@@ -13,8 +13,12 @@ class WeatherInfoViewModel @Inject constructor(private val weatherRepo: WeatherR
 
     private var _weatherQuery = MutableLiveData<WeatherQuery>()
 
-    val currentWeather: LiveData<WeatherData> = Transformations.switchMap(_weatherQuery) {query ->
+    val currentWeather: LiveData<WeatherData> = Transformations.switchMap(_weatherQuery) { query ->
         weatherRepo.getCurrentWeather(query)
+    }
+
+    val fiveDayForecast: LiveData<List<WeatherData>> = Transformations.switchMap(_weatherQuery) {query ->
+        weatherRepo.get5DayForecast(query)
     }
 
     fun setCurrentWeather(city: String, latitude: Float = 0f, longitude: Float = 0f) {

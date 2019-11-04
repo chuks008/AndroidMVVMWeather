@@ -24,6 +24,9 @@
         </activity>
 
         <activity android:name=".presentation.weather.WeatherActivity">
+        </activity>
+
+        <activity android:name=".presentation.weather.WeatherForecastActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
