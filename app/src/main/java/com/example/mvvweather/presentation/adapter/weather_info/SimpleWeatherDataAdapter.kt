@@ -6,9 +6,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mvvweather.R
-import com.example.mvvweather.data.weather.mapping.WeatherData
 
-class SimpleWeatherDataAdapter(val weatherList: List<WeatherData>):
+class SimpleWeatherDataAdapter(val weatherList: List<WeatherDataView>):
     RecyclerView.Adapter<SimpleWeatherDataAdapter.SimpleWeatherViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SimpleWeatherViewHolder {
@@ -21,18 +20,32 @@ class SimpleWeatherDataAdapter(val weatherList: List<WeatherData>):
     }
 
     override fun onBindViewHolder(holder: SimpleWeatherViewHolder, position: Int) {
-        holder.currentItem = weatherList.get(position)
-        holder.tempMax.text = holder.currentItem.maxTemp
-        holder.tempMin.text = holder.currentItem.minTemp
-        holder.condition.text = holder.currentItem.condition
+        holder.currentItem = weatherList[position]
+
+        holder.apply {
+
+            highLowText.text = String.format("%s / %s°",
+                currentItem.maxTemp,
+                currentItem.minTemp)
+
+            higLowUnitText.text = "C"
+            condition.text = currentItem.condition
+            currentTemp.text = currentItem.currentTemp
+            cityName.text = currentItem.city
+            countryName.text = currentItem.country
+        }
+
     }
 
     class SimpleWeatherViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
-        lateinit var currentItem: WeatherData
-        val tempMax: TextView = itemView.findViewById(0)
-        val tempMin: TextView = itemView.findViewById(0)
-        val condition: TextView = itemView.findViewById(0)
+        lateinit var currentItem: WeatherDataView
+        val currentTemp: TextView = itemView.findViewById(R.id.currentWeatherTempText)
+        val highLowText: TextView = itemView.findViewById(R.id.highLowText)
+        val higLowUnitText: TextView = itemView.findViewById(R.id.highLowUnitText)
+        val condition: TextView = itemView.findViewById(R.id.weatherItemConditionText)
+        val cityName: TextView = itemView.findViewById(R.id.cityNameText)
+        val countryName: TextView = itemView.findViewById(R.id.countryNameText)
 
     }
 }

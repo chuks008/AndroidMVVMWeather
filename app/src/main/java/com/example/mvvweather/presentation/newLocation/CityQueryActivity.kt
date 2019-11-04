@@ -6,16 +6,15 @@ import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mvvweather.R
-import com.example.mvvweather.data.location.response.LocationData
 import com.example.mvvweather.data.weather.mapping.WeatherData
 import com.example.mvvweather.di.modules.viewModel.ViewModelFactory
 import com.example.mvvweather.presentation.adapter.AutocompleteAdapter
-import com.example.mvvweather.presentation.mainScreen.MainScreenViewModel
+import com.example.mvvweather.presentation.adapter.weather_info.SimpleWeatherDataAdapter
+import com.example.mvvweather.presentation.adapter.weather_info.WeatherDataView
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.city_auto_complete_screen.*
 import javax.inject.Inject
@@ -28,6 +27,8 @@ class CityQueryActivity: DaggerAppCompatActivity() {
     private lateinit var suggestionAdapter: AutocompleteAdapter
     private lateinit var inputHandler: Handler
     private lateinit var inputRunnable: Runnable
+    private lateinit var weatherDataAdapter: SimpleWeatherDataAdapter
+    private val weatherDataViewList = ArrayList<WeatherDataView>()
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
@@ -38,19 +39,28 @@ class CityQueryActivity: DaggerAppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.city_auto_complete_screen)
 
-        suggestionAdapter = AutocompleteAdapter(this,
-            R.layout.auto_complete_list_item,
-            suggestions)
+        setSuggestionAdapter()
 
-        cityAutoComplete.setAdapter(suggestionAdapter)
-
-        cityAutoComplete.threshold = 3
+        weatherDataAdapter = SimpleWeatherDataAdapter(weatherDataViewList)
+        cityWeatherRecyclerView.layoutManager = LinearLayoutManager(this)
+        cityWeatherRecyclerView.adapter = weatherDataAdapter
 
         viewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(AddLocationViewModel::class.java)
 
         addViewModelObservers()
         addSuggestionListener()
+    }
+
+    private fun setSuggestionAdapter() {
+        suggestionAdapter = AutocompleteAdapter(
+            this,
+            R.layout.auto_complete_list_item,
+            suggestions
+        )
+
+        cityAutoComplete.setAdapter(suggestionAdapter)
+        cityAutoComplete.threshold = 3
     }
 
     private fun addViewModelObservers() {
@@ -74,6 +84,18 @@ class CityQueryActivity: DaggerAppCompatActivity() {
             } else {
                 Log.i(TAG, "Forecast list size: ${forecastList.size}")
                 Log.i(TAG, "Forecast list: $forecastList")
+
+                val latestWeatherData = forecastList.first()
+                weatherDataViewList.add(WeatherDataView(
+                    latestWeatherData.currentTemp,
+                    latestWeatherData.minTemp,
+                    latestWeatherData.maxTemp,
+                    latestWeatherData.condition,
+                    latestWeatherData.conditionIcon,
+                    "Lagos",
+                    "Nigeria"))
+
+                weatherDataAdapter.notifyDataSetChanged()
             }
         })
     }
@@ -94,7 +116,7 @@ class CityQueryActivity: DaggerAppCompatActivity() {
 
                 if(query.toString().trim().isNotEmpty() &&
                     query.toString().length > 2) {
-                    getCitySuggestions(query.toString())
+                    setCitySuggestions(query.toString())
                 }
             }
 
@@ -113,7 +135,7 @@ class CityQueryActivity: DaggerAppCompatActivity() {
 
     }
 
-    private fun getCitySuggestions(query: String) {
+    private fun setCitySuggestions(query: String) {
 
         suggestionAdapter.clear()
         suggestionAdapter.notifyDataSetChanged()

@@ -7,4 +7,5 @@
     <string name="high_low_weather_text">33 / 24°</string>
     <string name="high_low_weather_unit">C</string>
     <string name="weather_unit_text">C</string>
+    <string name="weather_item_condition_text">Breaking Clouds</string>
 </resources>
