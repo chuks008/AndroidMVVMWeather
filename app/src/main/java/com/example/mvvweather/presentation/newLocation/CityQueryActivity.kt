@@ -78,23 +78,15 @@ class CityQueryActivity: DaggerAppCompatActivity() {
             suggestionAdapter.notifyDataSetChanged()
         })
 
-        viewModel.cityWeatherData.observe(this, Observer<List<WeatherData>> { forecastList ->
-            if(forecastList.isEmpty()) {
+        viewModel.weatherDataList.observe(this, Observer<List<WeatherDataView>> { addedCities ->
+            if(addedCities.isEmpty()) {
                 Log.e(TAG, "Error getting forecast for the week")
             } else {
-                Log.i(TAG, "Forecast list size: ${forecastList.size}")
-                Log.i(TAG, "Forecast list: $forecastList")
+                Log.i(TAG, "Added cities list size: ${addedCities.size}")
+                Log.i(TAG, "Added cities list: $addedCities")
 
-                val latestWeatherData = forecastList.first()
-                weatherDataViewList.add(WeatherDataView(
-                    latestWeatherData.currentTemp,
-                    latestWeatherData.minTemp,
-                    latestWeatherData.maxTemp,
-                    latestWeatherData.condition,
-                    latestWeatherData.conditionIcon,
-                    "Lagos",
-                    "Nigeria"))
-
+                weatherDataViewList.clear()
+                weatherDataViewList.addAll(addedCities)
                 weatherDataAdapter.notifyDataSetChanged()
             }
         })
