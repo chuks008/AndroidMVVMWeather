@@ -5,5 +5,5 @@ import androidx.lifecycle.LiveData;
 import com.example.mvvweather.data.location.response.LocationData;
 
 public interface CurrentLocationManager {
-    LiveData<LocationData> getLocation();
+    fun LiveData<LocationData> getLocation();
 }
