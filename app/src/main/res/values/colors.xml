@@ -3,4 +3,6 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="line_separator_color_light">#99DDDDDD</color>
+    <color name="glass_background_color">#12ECECEC</color>
 </resources>

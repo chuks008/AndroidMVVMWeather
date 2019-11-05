@@ -71,7 +71,7 @@
         android:id="@+id/weatherDataSeparator"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#99DDDDDD"
+        android:background="@color/line_separator_color_light"
         android:layout_below="@id/weatherTempMetaLayout"
         android:layout_marginTop="20dp"/>
 
