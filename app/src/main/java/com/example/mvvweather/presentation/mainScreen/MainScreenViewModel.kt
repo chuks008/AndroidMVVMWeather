@@ -13,7 +13,7 @@ class MainScreenViewModel @Inject constructor(locationMgr: CurrentLocationManage
     private var _currentLocationData: LiveData<LocationData>
 
     init {
-        _currentLocationData = locationMgr.location
+        _currentLocationData = locationMgr.getLocation()
     }
 
     fun fetchLocation(): LiveData<LocationData> {
