@@ -28,7 +28,7 @@
                 android:id="@+id/cityNameToolbarText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:text="City"
                 android:layout_centerInParent="true"/>
 
@@ -44,13 +44,22 @@
                 android:id="@+id/tabLayout"
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
-                android:layout_alignParentBottom="true"
+                android:layout_above="@id/bottomToolbarOutline"
                 app:tabBackground="@drawable/tab_selector"
                 app:tabGravity="center"
                 app:tabIndicatorHeight="0dp"
                 app:tabIndicatorFullWidth="false"
                 app:tabPaddingStart="7dp"
-                app:tabPaddingEnd="7dp" />
+                app:tabPaddingEnd="7dp"
+                android:layout_marginBottom="5dp"/>
+
+            <View
+                android:id="@+id/bottomToolbarOutline"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:alpha="0.1"
+                android:background="@color/line_separator_color_light"/>
 
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
