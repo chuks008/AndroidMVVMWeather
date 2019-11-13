@@ -5,4 +5,5 @@
     <color name="colorAccent">#D81B60</color>
     <color name="line_separator_color_light">#99DDDDDD</color>
     <color name="glass_background_color">#12ECECEC</color>
+    <color name="tab_indicator_default_color">#4FFFFFFF</color>
 </resources>
