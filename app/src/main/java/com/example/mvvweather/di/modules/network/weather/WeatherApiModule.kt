@@ -1,6 +1,8 @@
 package com.example.mvvweather.di.modules.network.weather
 
 import com.example.mvvweather.Constants
+import com.example.mvvweather.data.storage.WeatherStoreRepository
+import com.example.mvvweather.data.storage.WeatherStoreRepositoryImpl
 import com.example.mvvweather.data.weather.WeatherApi
 import com.example.mvvweather.data.weather.WeatherRepository
 import com.example.mvvweather.data.weather.WeatherRepositoryImpl
@@ -36,5 +38,12 @@ class WeatherApiModule {
     @Provides
     fun provideWeatherRepository(weatherRepository: WeatherRepositoryImpl): WeatherRepository {
         return weatherRepository
+    }
+
+    @Singleton
+    @Provides
+    fun providesWeatherStoreRepository(weatherStoreRepository: WeatherStoreRepositoryImpl):
+            WeatherStoreRepository {
+        return weatherStoreRepository
     }
 }

@@ -2,6 +2,7 @@ package com.example.mvvweather.di.components
 
 import android.app.Application
 import com.example.mvvweather.application.MVVWeatherApp
+import com.example.mvvweather.di.modules.AppModule
 import com.example.mvvweather.di.modules.activity.ActivityBuildersModule
 import com.example.mvvweather.di.modules.network.cityQuery.CityQueryApiModule
 import com.example.mvvweather.di.modules.network.location.LocationModule
@@ -21,7 +22,8 @@ import javax.inject.Singleton
     ActivityBuildersModule::class,
     LocationModule::class,
     CityQueryApiModule::class,
-    WeatherApiModule::class
+    WeatherApiModule::class,
+    AppModule::class
     ])
 interface AppComponent: AndroidInjector<MVVWeatherApp> {
 
