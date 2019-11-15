@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.example.mvvweather.presentation.newLocation.CityQueryActivity
-import com.example.mvvweather.presentation.weather.WeatherListActivity
+import com.example.mvvweather.presentation.weather.current.WeatherListActivity
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 

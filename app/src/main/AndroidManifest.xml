@@ -29,7 +29,7 @@
 
         </activity>
 
-        <activity android:name=".presentation.weather.WeatherListActivity">
+        <activity android:name=".presentation.weather.current.WeatherListActivity">
         </activity>
 
         <activity android:name=".presentation.StartActivity">

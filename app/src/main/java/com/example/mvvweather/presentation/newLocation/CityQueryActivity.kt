@@ -12,12 +12,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mvvweather.R
-import com.example.mvvweather.data.weather.mapping.WeatherData
 import com.example.mvvweather.di.modules.viewModel.ViewModelFactory
 import com.example.mvvweather.presentation.adapter.AutocompleteAdapter
 import com.example.mvvweather.presentation.adapter.weather_info.SimpleWeatherDataAdapter
 import com.example.mvvweather.presentation.adapter.weather_info.WeatherDataView
-import com.example.mvvweather.presentation.weather.WeatherListActivity
+import com.example.mvvweather.presentation.weather.current.WeatherListActivity
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.city_auto_complete_screen.*
 import javax.inject.Inject

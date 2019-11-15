@@ -1,4 +1,4 @@
-package com.example.mvvweather.presentation.weather
+package com.example.mvvweather.presentation.weather.current
 
 import android.os.Bundle
 import android.view.LayoutInflater
