@@ -20,11 +20,6 @@
         </activity>
 
         <activity android:name=".presentation.newLocation.CityQueryActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity android:name=".presentation.weather.WeatherActivity">
@@ -35,8 +30,15 @@
         </activity>
 
         <activity android:name=".presentation.weather.WeatherListActivity">
-
         </activity>
+
+        <activity android:name=".presentation.StartActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>
