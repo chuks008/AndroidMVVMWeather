@@ -21,7 +21,6 @@ class WeatherListActivity: AppCompatActivity() {
 
         fragmentPager.addFragment(WeatherItemFragment(), "Lagos")
         fragmentPager.addFragment(WeatherItemFragment(), "Accra")
-        fragmentPager.addFragment(WeatherItemFragment(), "Chennai")
 
         supportActionBar?.let {
             cityNameToolbarText.text = fragmentPager.getPageTitle(0)
