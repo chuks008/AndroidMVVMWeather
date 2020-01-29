@@ -23,7 +23,8 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textSize="18sp"
-            android:text="@string/weather_item_city_name" />
+            android:text="@string/weather_item_city_name"
+            android:textColor="@android:color/darker_gray"/>
 
         <TextView
             android:id="@+id/countryNameText"
@@ -31,6 +32,7 @@
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:text="@string/weather_item_country_name"
+            android:textColor="@android:color/darker_gray"
             android:layout_marginTop="3dp"/>
 
     </LinearLayout>
@@ -40,8 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_alignParentEnd="true"
-        >
+        android:layout_alignParentEnd="true">
 
         <ImageView
             android:id="@+id/conditionIconImg"
@@ -56,6 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="40sp"
+            android:textColor="@android:color/darker_gray"
             android:text="27&#176;" />
 
         <TextView
@@ -63,6 +65,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="40sp"
+            android:textColor="@android:color/darker_gray"
             android:text="@string/weather_unit_text" />
 
     </LinearLayout>
@@ -82,6 +85,7 @@
         android:textSize="18sp"
         android:layout_marginTop="10dp"
         android:textStyle="italic"
+        android:textColor="@android:color/darker_gray"
         android:layout_below="@id/weatherDataSeparator"
         android:text="@string/weather_item_condition_text" />
 
@@ -98,6 +102,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18sp"
+            android:textColor="@android:color/darker_gray"
             android:text="@string/high_low_weather_text" />
 
         <TextView
@@ -105,6 +110,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18sp"
+            android:textColor="@android:color/darker_gray"
             android:text="@string/high_low_weather_unit" />
 
     </LinearLayout>

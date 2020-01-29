@@ -1,20 +1,22 @@
 package com.example.mvvweather.presentation.newLocation
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mvvweather.R
-import com.example.mvvweather.data.weather.mapping.WeatherData
 import com.example.mvvweather.di.modules.viewModel.ViewModelFactory
 import com.example.mvvweather.presentation.adapter.AutocompleteAdapter
 import com.example.mvvweather.presentation.adapter.weather_info.SimpleWeatherDataAdapter
 import com.example.mvvweather.presentation.adapter.weather_info.WeatherDataView
+import com.example.mvvweather.presentation.weather.current.WeatherListActivity
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.city_auto_complete_screen.*
 import javax.inject.Inject
@@ -78,16 +80,13 @@ class CityQueryActivity: DaggerAppCompatActivity() {
             suggestionAdapter.notifyDataSetChanged()
         })
 
-        viewModel.weatherDataList.observe(this, Observer<List<WeatherDataView>> { addedCities ->
-            if(addedCities.isEmpty()) {
-                Log.e(TAG, "Error getting forecast for the week")
+        viewModel.isCurrentWeatherEntrySaved.observe(this, Observer<Boolean> { isCityAdded ->
+            if(isCityAdded) {
+                startActivity(Intent(this, WeatherListActivity::class.java))
             } else {
-                Log.i(TAG, "Added cities list size: ${addedCities.size}")
-                Log.i(TAG, "Added cities list: $addedCities")
-
-                weatherDataViewList.clear()
-                weatherDataViewList.addAll(addedCities)
-                weatherDataAdapter.notifyDataSetChanged()
+                Toast.makeText(this,
+                    "Unable to add new city. Please try again",
+                    Toast.LENGTH_SHORT).show()
             }
         })
     }

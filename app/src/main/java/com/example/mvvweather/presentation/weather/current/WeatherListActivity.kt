@@ -1,9 +1,8 @@
-package com.example.mvvweather.presentation.weather
+package com.example.mvvweather.presentation.weather.current
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.view.get
 import androidx.viewpager.widget.ViewPager
 import com.example.mvvweather.R
 import com.example.mvvweather.presentation.adapter.WeatherItemPagerAdapter
@@ -22,7 +21,6 @@ class WeatherListActivity: AppCompatActivity() {
 
         fragmentPager.addFragment(WeatherItemFragment(), "Lagos")
         fragmentPager.addFragment(WeatherItemFragment(), "Accra")
-        fragmentPager.addFragment(WeatherItemFragment(), "Chennai")
 
         supportActionBar?.let {
             cityNameToolbarText.text = fragmentPager.getPageTitle(0)

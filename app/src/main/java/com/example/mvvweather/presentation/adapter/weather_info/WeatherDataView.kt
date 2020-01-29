@@ -1,9 +1,5 @@
 package com.example.mvvweather.presentation.adapter.weather_info
 
-import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
-
-
 /**
  * Created by Your name on 2019-11-04.
  */
